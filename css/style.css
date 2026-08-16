@@ -1,0 +1,380 @@
+/* ==========================================================================
+   THEME STYLING: Bronze & Gold Elegance
+   Wedding of Habib Yulianto & Adiba Putri Syakila
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Brand / Primary Theme */
+  --color-primary: #4A2E2B;           /* Dark Bronze / Espresso */
+  --color-primary-hover: #36211F;     /* Deep Bronze */
+  --color-primary-light: #F4EEE7;     /* Light Cream Bronze */
+  --color-primary-contrast: #FFFFFF;
+
+  /* Metallic & Floral Accents */
+  --color-accent-gold: #D9A05B;        /* Warm Gold / Champagne */
+  --color-accent-gold-hover: #C28B46;
+  --color-accent-gold-light: #F7EFE3;
+  --color-accent-maroon: #8B263E;      /* Deep Crimson / Floral Maroon */
+  --color-accent-maroon-hover: #721C30;
+
+  /* Neutral & Backgrounds */
+  --color-bg-main: #FBF9F6;           /* Warm Off-White */
+  --color-bg-card: #F4EEE7;           /* Warm Cream / Soft Sand */
+  --color-bg-card-alt: #FFFFFF;
+  --color-bg-overlay: rgba(74, 46, 43, 0.88);
+
+  /* Typography */
+  --color-text-main: #2C221E;         /* Dark Espresso Charcoal */
+  --color-text-muted: #766960;        /* Muted Earth Brown */
+  --color-text-gold: #B8833B;         /* Dark Warm Gold for legible text */
+
+  /* Borders & Shadows */
+  --color-border-subtle: #E4D8CA;     /* Soft Gold Tint Border */
+  --color-border-gold: #D9A05B;
+  --shadow-card: 0 10px 30px -5px rgba(74, 46, 43, 0.08);
+  --shadow-card-hover: 0 20px 40px -8px rgba(74, 46, 43, 0.16);
+  --shadow-button: 0 4px 14px rgba(74, 46, 43, 0.25);
+  --shadow-button-gold: 0 4px 18px rgba(217, 160, 91, 0.35);
+
+  /* Font Families */
+  --font-script: 'Great Vibes', cursive;
+  --font-serif: 'Cinzel', Georgia, serif;
+  --font-sans: 'Montserrat', 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  background-color: var(--color-bg-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.lock-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #D9A05B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8833B;
+}
+
+/* Font utilities */
+.font-script {
+  font-family: var(--font-script) !important;
+}
+.font-serif-display {
+  font-family: var(--font-serif) !important;
+  letter-spacing: 0.08em;
+}
+.font-sans-body {
+  font-family: var(--font-sans) !important;
+}
+
+/* Custom Floating Keyframe Animations (Floral & Decor) */
+@keyframes floatGentleA {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg) scale(1.02);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes floatGentleB {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(10px) rotate(-3deg) scale(0.98);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes floatPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float-a {
+  animation: floatGentleA 6s ease-in-out infinite;
+}
+
+.animate-float-b {
+  animation: floatGentleB 7s ease-in-out infinite;
+}
+
+.animate-float-pulse {
+  animation: floatPulse 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+.paused {
+  animation-play-state: paused !important;
+}
+
+/* Gold Gradient Accents */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #D9A05B 0%, #F5D399 50%, #B8833B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #D9A05B 0%, #E9B878 100%);
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(135deg, #D9A05B, #E4D8CA, #B8833B) 1;
+}
+
+/* Glassmorphism / Frosted Card */
+.glass-card {
+  background: rgba(244, 238, 231, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(228, 216, 202, 0.8);
+}
+
+.glass-card-white {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(228, 216, 202, 0.8);
+}
+
+.glass-card-dark {
+  background: rgba(74, 46, 43, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(217, 160, 91, 0.3);
+}
+
+/* Button & interactive components */
+.btn-gold {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: 1px solid var(--color-accent-gold);
+  box-shadow: var(--shadow-button);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-primary-hover);
+  border-color: #F5D399;
+  box-shadow: var(--shadow-button-gold);
+  transform: translateY(-2px);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline-gold {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-accent-gold);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-button);
+}
+
+/* Mountain Shape Divider (from plan.MD) */
+.shape-divider-mountain {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.shape-divider-mountain svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 48px;
+}
+
+@media (min-width: 768px) {
+  .shape-divider-mountain svg {
+    height: 72px;
+  }
+}
+
+/* Cover Overlay Transition */
+#cover-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #4A2E2B;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease-in-out;
+  will-change: transform, opacity;
+}
+
+#cover-overlay.opened {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Toast Notification */
+#toast-notification {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 10000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Lightbox Modal */
+#gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(44, 34, 30, 0.95);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#gallery-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Audio Player Floating Button */
+.audio-disc-player {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #4A2E2B 25%, #2C221E 60%, #D9A05B 100%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  border: 2px solid #D9A05B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.audio-disc-player:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(217, 160, 91, 0.4);
+}
+
+/* Floating Bottom Navigation */
+.floating-bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  background: rgba(74, 46, 43, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 160, 91, 0.4);
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px rgba(44, 34, 30, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Timeline Custom Connectors */
+.timeline-stem {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(180deg, #D9A05B 0%, #E4D8CA 50%, #D9A05B 100%);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+  .timeline-stem {
+    left: 20px;
+  }
+}
+
+/* Custom Checkbox / Radio Pill in RSVP */
+.rsvp-pill-input:checked + .rsvp-pill-label {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 4px 12px rgba(74, 46, 43, 0.25);
+}
+
+/* Print Clean */
+@media print {
+  #cover-overlay, .floating-bottom-nav, #audio-player-container, #toast-notification {
+    display: none !important;
+  }
+}

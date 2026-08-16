@@ -1,0 +1,183 @@
+/**
+ * WEDDING CONFIGURATION
+ * Centralized settings for Wedding of Habib & Adiba
+ * Supports Cloudinary CDN, YouTube Unlisted, and Supabase integration
+ */
+
+export const WEDDING_CONFIG = {
+  // Couple Information
+  couple: {
+    groom: {
+      fullName: "Edita Efendi",
+      shortName: "Fendi",
+      father: "xxxx",
+      mother: "xxxx",
+      childOrder: "Putra Kedua",
+      instagram: "https://instagram.com/habib",
+      instagramHandle: "@habib",
+      // CDN / Placeholder Photo
+      photo: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.37.40_AM_r6wacc.jpg"
+    },
+    bride: {
+      fullName: "Tamara",
+      shortName: "Tamara",
+      father: "xxxx",
+      mother: "xxxx",
+      childOrder: "Putri Pertama",
+      instagram: "https://instagram.com/adiba",
+      instagramHandle: "@adiba",
+      // CDN / Placeholder Photo
+      photo: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.37.39_AM_klqkf8.jpg"
+    },
+    jointPhoto: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.35.22_AM_u4vgzu.jpg",
+    coverPhoto: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.35.22_AM_u4vgzu.jpg"
+  },
+
+  // Event Schedule & Locations
+  event: {
+    // Timestamp ISO & target (Senin, 28 Desember 2026 08:00 WIB / UTC+7)
+    targetTimestamp: 1798426800000, // 2026-12-28T08:00:00+07:00
+    dateFormatted: "Senin, 28 Desember 2026",
+    day: "Senin",
+    dateNumber: "28",
+    monthYear: "Desember 2026",
+    
+    // Akad Nikah
+    akad: {
+      title: "Akad Nikah",
+      date: "Senin, 28 Desember 2026",
+      time: "08:00 WIB - Selesai",
+      venue: "KEDIAMAN MEMPELAI WANITA",
+      address: "Ds Pagu, Kec. Wates, Kab. Kediri, Jawa Timur",
+      mapsUrl: "https://maps.google.com/?q=Ds+Pagu+Wates+Kediri+Jawa+Timur",
+      calendarTitle: "Akad Nikah Habib & Adiba"
+    },
+
+    // Resepsi
+    resepsi: {
+      title: "Resepsi Pernikahan",
+      date: "Senin, 28 Desember 2026",
+      time: "10:00 WIB - Selesai",
+      venue: "KEDIAMAN MEMPELAI WANITA",
+      address: "Ds Pagu, Kec. Wates, Kab. Kediri, Jawa Timur",
+      mapsUrl: "https://maps.google.com/?q=Ds+Pagu+Wates+Kediri+Jawa+Timur",
+      calendarTitle: "Resepsi Pernikahan Habib & Adiba"
+    },
+
+    // Live Streaming
+    streaming: {
+      time: "08:00 WIB",
+      platform: "Instagram & YouTube Live",
+      instagramUrl: "https://instagram.com/habib",
+      youtubeUrl: "https://youtube.com"
+    }
+  },
+
+  // Love Story Timeline
+  story: [
+    {
+      year: "2020",
+      title: "Awal Cerita",
+      description: "Pertemuan pertama yang tak disengaja di sebuah kegiatan kampus. Dari sekadar tegur sapa sederhana, bersemi percakapan hangat yang membuka jalan bagi kami untuk saling mengenal kepribadian masing-masing lebih dalam."
+    },
+    {
+      year: "2025",
+      title: "Lamaran & Komitmen",
+      description: "Setelah melalui perjalanan panjang, saling bertumbuh, dan memantapkan hati, dengan restu kedua keluarga besar kami mengikat janji suci pertunangan untuk melangkah ke jenjang pernikahan."
+    },
+    {
+      year: "2026",
+      title: "Pernikahan",
+      description: "Hari yang penuh berkah dan doa. Kami mengucap ikrar suci akad nikah untuk menyempurnakan ibadah dan memulai lembaran baru sebagai sepasang suami istri di hadapan Allah SWT."
+    }
+  ],
+
+  // Multimedia (Cloudinary CDN, YouTube Unlisted)
+  multimedia: {
+    // YouTube Unlisted Video (embed ID or URL)
+    youtubeVideoId: "kJQP7kiw5Fk", // Replace with your unlisted YouTube Video ID
+    
+    // Background Audio (Lagu Pernikahan Kita / Wedding Instrumental)
+    // You can host MP3 on Cloudinary or static folder
+    backgroundMusic: "https://res.cloudinary.com/dpvjfnw6d/video/upload/v1711200000/wedding-song.mp3",
+    audioFallback: "https://cdn.pixabay.com/download/audio/2022/02/22/audio_c0c978007a.mp3?filename=romantic-wedding-110091.mp3",
+    songTitle: "Tiara Andini & Arsy Widianto – Lagu Pernikahan Kita",
+
+    // Gallery Photos (Cloudinary CDN links with curated wedding aesthetics)
+    gallery: [
+      {
+        id: 1,
+        url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80",
+        thumb: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=500&q=80",
+        caption: "Momen Bahagia Habib & Adiba"
+      },
+      {
+        id: 2,
+        url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
+        thumb: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80",
+        caption: "Janji Suci Dalam Cinta"
+      },
+      {
+        id: 3,
+        url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80",
+        thumb: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80",
+        caption: "Menatap Masa Depan Bersama"
+      },
+      {
+        id: 4,
+        url: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80",
+        thumb: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=500&q=80",
+        caption: "Langkah Awal Menuju Ridho-Nya"
+      },
+      {
+        id: 5,
+        url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80",
+        thumb: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80",
+        caption: "Kebahagiaan Dalam Kesederhanaan"
+      },
+      {
+        id: 6,
+        url: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1000&q=80",
+        thumb: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=500&q=80",
+        caption: "Abadi Dalam Doa dan Cinta"
+      }
+    ]
+  },
+
+  // Digital Envelope & Gift
+  gift: {
+    bank: {
+      bankName: "BCA",
+      bankLogo: "BCA",
+      accountNumber: "12345678",
+      accountHolder: "Habib Yulianto"
+    },
+    bankBride: {
+      bankName: "MANDIRI",
+      bankLogo: "MANDIRI",
+      accountNumber: "87654321098",
+      accountHolder: "Adiba Putri Syakila"
+    },
+    physicalGift: {
+      recipient: "Habib Yulianto & Adiba",
+      phone: "081234567890",
+      address: "Ds Pagu, RT 02 / RW 01, Kec. Wates, Kab. Kediri, Jawa Timur, 64174"
+    }
+  },
+
+  // Supabase Database Settings (Reads dynamically from .env / js/env.js / Vercel Environment Variables)
+  supabase: {
+    get url() {
+      if (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.SUPABASE_URL) {
+        return window.__ENV__.SUPABASE_URL.trim();
+      }
+      return "";
+    },
+    get anonKey() {
+      if (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.SUPABASE_ANON_KEY) {
+        return window.__ENV__.SUPABASE_ANON_KEY.trim();
+      }
+      return "";
+    }
+  }
+};

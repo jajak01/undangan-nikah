@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <!-- SEO & Open Graph Meta Tags (Dynamic via JS) -->
+  <title>Undangan Pernikahan</title>
+  <meta name="description" content="Undangan Pernikahan Digital" />
+  <meta name="theme-color" content="#4A2E2B" />
+  <meta property="og:title" content="The Wedding" />
+  <meta property="og:description" content="Undangan Pernikahan Digital" />
+  <meta property="og:image" content="" />
+  <meta property="og:type" content="website" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4A2E2B',
+            'primary-hover': '#36211F',
+            'primary-light': '#F4EEE7',
+            'accent-gold': '#D9A05B',
+            'accent-gold-hover': '#C28B46',
+            'accent-gold-light': '#F7EFE3',
+            'accent-maroon': '#8B263E',
+            'accent-maroon-hover': '#721C30',
+            'bg-main': '#FBF9F6',
+            'bg-card': '#F4EEE7',
+            'text-main': '#2C221E',
+            'text-muted': '#766960',
+            'border-subtle': '#E4D8CA',
+          },
+          fontFamily: {
+            script: ['"Great Vibes"', 'cursive'],
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Montserrat', 'Quicksand', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-bg-main text-text-main font-sans antialiased selection:bg-accent-gold/20 selection:text-primary">
+
+  <!-- ======================================================================
+       TOAST NOTIFICATION (Fixed Top)
+       ====================================================================== -->
+  <div id="toast-notification" class="flex items-center gap-3 px-5 py-3.5 bg-primary text-white rounded-2xl shadow-2xl border border-accent-gold/40 text-sm">
+    <span id="toast-icon"></span>
+    <span id="toast-message" class="font-medium"></span>
+  </div>
+
+  <!-- ======================================================================
+       LIGHTBOX MODAL (Gallery Zoom)
+       ====================================================================== -->
+  <div id="gallery-lightbox" class="flex items-center justify-center p-4">
+    <div id="lightbox-container" class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+      <button id="lightbox-close" class="absolute -top-12 right-0 text-white hover:text-accent-gold p-2 transition">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      <img id="lightbox-img" src="" alt="Gallery Image" class="max-h-[75vh] w-auto rounded-xl object-contain shadow-2xl border border-accent-gold/30" />
+      <p id="lightbox-caption" class="text-white/90 text-sm mt-3 text-center font-medium"></p>
+      
+      <!-- Nav Arrows -->
+      <button id="lightbox-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full transition border border-white/20">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+      <button id="lightbox-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full transition border border-white/20">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       SEKSI 1: COVER / OPENING OVERLAY (Full Screen Photo Background)
+       ====================================================================== -->
+  <div id="cover-overlay" class="flex flex-col items-center justify-between p-5 sm:p-8 text-center text-white relative overflow-y-auto max-h-screen">
+    <!-- Full-Screen Couple Photo Background (No Frame) -->
+    <img 
+      id="cover-photo-img" 
+      src="" 
+      alt="Foto Pengantin" 
+      class="absolute inset-0 w-full h-full object-cover object-center transform scale-100 transition-transform duration-1000 ease-out z-0 pointer-events-none" 
+    />
+
+    <!-- Cinematic Multi-Stop Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#2C221E]/60 via-[#4A2E2B]/40 to-[#2C221E]/95 z-0 pointer-events-none"></div>
+
+    <!-- Ambient Vignette Overlay -->
+    <div class="absolute inset-0 bg-radial from-transparent via-[#4A2E2B]/20 to-[#2C221E]/80 mix-blend-multiply z-0 pointer-events-none"></div>
+
+    <!-- Floating Top Floral Ornaments -->
+    <div class="absolute top-0 left-0 w-32 sm:w-56 opacity-60 pointer-events-none animate-float-a z-10">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-accent-gold">
+        <path d="M0 0C50 30 70 80 50 130C30 180 0 200 0 200V0Z" fill="currentColor" fill-opacity="0.15"/>
+        <circle cx="40" cy="40" r="8" fill="currentColor" fill-opacity="0.4"/>
+        <circle cx="80" cy="60" r="5" fill="currentColor" fill-opacity="0.3"/>
+        <path d="M10 80C35 95 65 85 80 60" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+      </svg>
+    </div>
+    <div class="absolute top-0 right-0 w-32 sm:w-56 opacity-60 pointer-events-none animate-float-b scale-x-[-1] z-10">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-accent-gold">
+        <path d="M0 0C50 30 70 80 50 130C30 180 0 200 0 200V0Z" fill="currentColor" fill-opacity="0.15"/>
+        <circle cx="40" cy="40" r="8" fill="currentColor" fill-opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Header Section -->
+    <div class="relative z-10 pt-3 sm:pt-6">
+      <p class="font-serif text-accent-gold tracking-[0.3em] text-xs sm:text-sm uppercase mb-1.5 drop-shadow">The Wedding Of</p>
+      <div class="w-16 h-0.5 bg-accent-gold/80 mx-auto shadow-sm"></div>
+    </div>
+
+    <!-- Center Couple & Guest Box -->
+    <div class="relative z-10 max-w-md w-full my-auto py-6 flex flex-col items-center">
+      
+      <!-- Big Couple Name Display -->
+      <div class="mb-5">
+        <h1 id="cover-couple-names" class="font-script text-5xl sm:text-7xl text-accent-gold leading-none tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]">
+          <!-- Populated from config.js -->
+        </h1>
+        <div class="flex items-center justify-center gap-3 mt-3">
+          <span class="w-8 h-[1px] bg-accent-gold/70"></span>
+          <p id="cover-event-date" class="font-serif text-white/95 text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold drop-shadow">
+            <!-- Populated from config.js -->
+          </p>
+          <span class="w-8 h-[1px] bg-accent-gold/70"></span>
+        </div>
+      </div>
+
+      <!-- Guest Card (Frosted Glass with Luxury Border) -->
+      <div class="glass-card-dark rounded-3xl p-5 sm:p-6 border border-accent-gold/50 shadow-[0_15px_35px_rgba(0,0,0,0.5)] my-4 w-full backdrop-blur-md">
+        <p class="text-white/80 text-xs mb-1 font-light tracking-wide">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+        <h3 id="guest-name-cover" class="font-serif text-xl sm:text-2xl font-bold text-accent-gold tracking-wide my-1.5 truncate drop-shadow-sm">
+          Tamu Undangan
+        </h3>
+        <p class="text-white/70 text-xs italic font-light mt-1">Tanpa Mengurangi Rasa Hormat, Kami Mengundang Anda Untuk Hadir di Hari Bahagia Kami.</p>
+      </div>
+
+      <!-- CTA Button -->
+      <button id="btn-open-invitation" class="btn-gold group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full font-medium text-xs sm:text-sm shadow-[0_8px_25px_rgba(217,160,91,0.35)] hover:shadow-accent-gold/50 transition duration-300 transform hover:-translate-y-0.5">
+        <svg class="w-4 h-4 text-accent-gold group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"></path>
+        </svg>
+        <span class="font-semibold tracking-wide">Buka Undangan</span>
+      </button>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="relative z-10 pb-2 text-white/60 text-[10px] sm:text-xs tracking-wider uppercase font-light drop-shadow">
+      Mohon gunakan orientasi portrait untuk pengalaman terbaik
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       SEKSI 2: HERO + COUNTDOWN SECTION
+       ====================================================================== -->
+  <section id="hero" class="relative min-h-screen flex flex-col justify-between items-center text-center px-4 pt-16 pb-24 overflow-hidden bg-gradient-to-b from-bg-card via-bg-main to-bg-card">
+    <!-- Canvas Floating Particles -->
+    <canvas id="particle-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Top Ornaments -->
+    <div class="relative z-10 max-w-2xl mx-auto mt-6" data-aos="fade-down" data-aos-duration="1200">
+      <div class="inline-flex items-center justify-center gap-2 mb-3">
+        <span class="w-8 h-[1px] bg-accent-gold"></span>
+        <span class="font-serif text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold">The Wedding Celebration</span>
+        <span class="w-8 h-[1px] bg-accent-gold"></span>
+      </div>
+      <h1 id="hero-couple-names" class="font-script text-6xl sm:text-8xl text-primary mb-2 drop-shadow-sm">
+        <!-- Populated from config.js -->
+      </h1>
+      <p id="guest-name-hero" class="text-xs sm:text-sm font-medium text-accent-maroon uppercase tracking-wider mb-6"></p>
+    </div>
+
+    <!-- Center Photo Frame -->
+    <div class="relative z-10 my-6" data-aos="zoom-in" data-aos-duration="1400">
+      <div class="relative w-56 h-72 sm:w-64 sm:h-84 mx-auto rounded-full p-2.5 bg-gradient-to-b from-accent-gold via-border-subtle to-primary shadow-2xl">
+        <div class="w-full h-full rounded-full overflow-hidden border-2 border-white bg-bg-card">
+          <img id="hero-photo-img" src="" alt="Couple Photo" class="w-full h-full object-cover transform hover:scale-105 transition duration-700" />
+        </div>
+      </div>
+      <!-- Decorative Floral Pin -->
+      <div id="hero-date-pin" class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-bg-main px-4 py-1 rounded-full border border-accent-gold shadow-md text-xs font-serif text-primary tracking-widest uppercase">
+        <!-- Populated from config.js -->
+      </div>
+    </div>
+
+    <!-- Live Countdown Section -->
+    <div id="countdown-container" class="relative z-10 max-w-lg w-full mx-auto mt-4" data-aos="fade-up" data-aos-duration="1200">
+      <p class="countdown-status text-xs sm:text-sm uppercase tracking-widest text-text-muted mb-4 font-semibold">Menghitung Hari Bahagia</p>
+      
+      <div class="grid grid-cols-4 gap-2.5 sm:gap-4 px-2">
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-border-subtle shadow-sm flex flex-col items-center">
+          <span id="cd-days" class="font-serif text-2xl sm:text-4xl font-bold text-primary">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-text-muted font-medium mt-1">Hari</span>
+        </div>
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-border-subtle shadow-sm flex flex-col items-center">
+          <span id="cd-hours" class="font-serif text-2xl sm:text-4xl font-bold text-primary">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-text-muted font-medium mt-1">Jam</span>
+        </div>
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-border-subtle shadow-sm flex flex-col items-center">
+          <span id="cd-minutes" class="font-serif text-2xl sm:text-4xl font-bold text-primary">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-text-muted font-medium mt-1">Menit</span>
+        </div>
+        <div class="bg-white/80 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-border-subtle shadow-sm flex flex-col items-center">
+          <span id="cd-seconds" class="font-serif text-2xl sm:text-4xl font-bold text-accent-gold">00</span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-wider text-text-muted font-medium mt-1">Detik</span>
+        </div>
+      </div>
+
+      <!-- Save The Date Action -->
+      <div class="mt-6">
+        <button id="btn-add-calendar" class="btn-gold inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium shadow-md">
+          <svg class="w-4 h-4 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <span>Simpan Tanggal (Google Calendar)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mountain Shape Divider (Bottom) -->
+    <div class="shape-divider-mountain bottom-0">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" fill="#FBF9F6">
+        <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 3: SALAM PEMBUKA & PROFIL MEMPELAI
+       ====================================================================== -->
+  <section id="couple" class="relative py-20 px-4 sm:px-8 bg-bg-main overflow-hidden">
+    <!-- Top Greeting & Ayat -->
+    <div class="max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
+      <h2 class="font-serif text-xl sm:text-2xl text-primary font-bold tracking-wider mb-2">Assalamu'alaikum Warahmatullahi Wabarakatuh</h2>
+      <p class="text-xs sm:text-sm text-text-muted leading-relaxed max-w-xl mx-auto mb-8">
+        Maha Suci Allah SWT yang telah menciptakan makhluk-Nya berpasang-pasangan. Dengan memohon rahmat dan ridho-Nya, kami bermaksud menyelenggarakan syukuran pernikahan putra-putri kami:
+      </p>
+    </div>
+
+    <!-- Couple Cards Grid -->
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mt-4 items-center">
+      
+      <!-- Mempelai Pria -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 text-center shadow-lg border border-border-subtle relative group" data-aos="fade-right" data-aos-duration="1200">
+        <div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-5">
+          <div class="w-full h-full rounded-full p-1.5 bg-gradient-to-tr from-accent-gold via-border-subtle to-primary">
+            <img id="groom-photo" src="" alt="Mempelai Pria" class="w-full h-full object-cover rounded-full shadow-md" />
+          </div>
+        </div>
+        <h3 id="groom-full-name" class="font-serif text-2xl font-bold text-primary mb-1"></h3>
+        <p class="text-xs text-accent-gold font-medium uppercase tracking-widest mb-3">Mempelai Pria</p>
+        <p id="groom-parents-info" class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4"></p>
+        <a id="groom-instagram" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary hover:bg-primary hover:text-white transition duration-300">
+          <svg class="w-3.5 h-3.5 text-accent-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span id="groom-ig-handle"></span>
+        </a>
+      </div>
+
+      <!-- Mempelai Wanita -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 text-center shadow-lg border border-border-subtle relative group" data-aos="fade-left" data-aos-duration="1200">
+        <div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-5">
+          <div class="w-full h-full rounded-full p-1.5 bg-gradient-to-tr from-accent-maroon via-accent-gold to-border-subtle">
+            <img id="bride-photo" src="" alt="Mempelai Wanita" class="w-full h-full object-cover rounded-full shadow-md" />
+          </div>
+        </div>
+        <h3 id="bride-full-name" class="font-serif text-2xl font-bold text-primary mb-1"></h3>
+        <p class="text-xs text-accent-maroon font-medium uppercase tracking-widest mb-3">Mempelai Wanita</p>
+        <p id="bride-parents-info" class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4"></p>
+        <a id="bride-instagram" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary hover:bg-primary hover:text-white transition duration-300">
+          <svg class="w-3.5 h-3.5 text-accent-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span id="bride-ig-handle"></span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Quran Verse Callout -->
+    <div class="max-w-2xl mx-auto mt-14 p-6 rounded-2xl bg-bg-card border border-border-subtle text-center shadow-sm" data-aos="fade-up">
+      <p class="font-serif text-xs sm:text-sm text-text-main italic leading-relaxed mb-3">
+        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+      </p>
+      <span class="text-xs font-serif text-accent-gold font-semibold tracking-wider">— QS. Ar-Rum: 21 —</span>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 4: PERJALANAN CERITA (LOVE STORY TIMELINE DYNAMIC)
+       ====================================================================== -->
+  <section id="story" class="relative py-20 px-4 bg-bg-card overflow-hidden">
+    <div class="max-w-3xl mx-auto text-center mb-14" data-aos="fade-up">
+      <span class="text-xs font-serif text-accent-gold uppercase tracking-[0.25em] font-semibold">Love Journey</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary mt-1">Perjalanan Cerita Kami</h2>
+      <div class="w-12 h-0.5 bg-accent-gold mx-auto mt-3"></div>
+    </div>
+
+    <!-- Timeline Wrapper (Populated Dynamically via js/render.js) -->
+    <div id="story-timeline-container" class="relative max-w-3xl mx-auto"></div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 5: TANGGAL ACARA (AKAD, RESEPSI, LIVE STREAMING)
+       ====================================================================== -->
+  <section id="event" class="relative py-20 px-4 bg-bg-main overflow-hidden">
+    <div class="max-w-3xl mx-auto text-center mb-12" data-aos="fade-up">
+      <span class="text-xs font-serif text-accent-gold uppercase tracking-[0.25em] font-semibold">Wedding Schedule</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary mt-1">Waktu &amp; Tempat Acara</h2>
+      <div class="w-12 h-0.5 bg-accent-gold mx-auto mt-3"></div>
+      <p class="text-xs sm:text-sm text-text-muted mt-3 max-w-lg mx-auto">
+        Dengan penuh rasa syukur, kami mengundang Anda untuk menyaksikan dan memberikan doa restu pada momen sakral kami:
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1: Live Streaming -->
+      <div class="glass-card rounded-3xl p-6 sm:p-7 text-center shadow-md border border-border-subtle flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+        <div>
+          <div class="w-12 h-12 rounded-full bg-accent-maroon/10 text-accent-maroon flex items-center justify-center mx-auto mb-4 border border-accent-maroon/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-primary mb-1">Live Streaming</h3>
+          <span class="inline-block px-3 py-1 rounded-full bg-accent-maroon text-white text-xs font-semibold mb-3">Siaran Langsung</span>
+          <p class="text-xs sm:text-sm text-text-muted mb-2">Bagi keluarga dan sahabat yang berhalangan hadir secara langsung:</p>
+          <p id="stream-date" class="font-serif font-bold text-primary text-sm mb-1"></p>
+          <p id="stream-time" class="text-xs font-medium text-accent-maroon mb-4"></p>
+        </div>
+        <a id="stream-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold w-full py-2.5 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-accent-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span id="stream-btn-text"></span>
+        </a>
+      </div>
+
+      <!-- Card 2: Akad Nikah -->
+      <div class="glass-card-white rounded-3xl p-6 sm:p-7 text-center shadow-xl border-2 border-accent-gold flex flex-col justify-between relative transform md:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent-gold text-white text-[11px] font-bold px-4 py-0.5 rounded-full uppercase tracking-wider shadow">
+          Momen Sakral
+        </div>
+        <div>
+          <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 border border-accent-gold/40 mt-1">
+            <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-primary mb-1">Akad Nikah</h3>
+          <p id="akad-date" class="font-serif font-bold text-accent-maroon text-sm mb-1"></p>
+          <p id="akad-time" class="text-xs font-semibold text-primary mb-3"></p>
+          
+          <div class="bg-bg-card p-3.5 rounded-xl border border-border-subtle mb-4">
+            <p id="akad-venue" class="text-xs font-bold text-primary uppercase"></p>
+            <p id="akad-address" class="text-[11px] text-text-muted mt-1 leading-snug"></p>
+          </div>
+        </div>
+        <a id="akad-maps-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold w-full py-2.5 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-2 shadow-md">
+          <svg class="w-4 h-4 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <span>Petunjuk Arah (Google Maps)</span>
+        </a>
+      </div>
+
+      <!-- Card 3: Resepsi -->
+      <div class="glass-card rounded-3xl p-6 sm:p-7 text-center shadow-md border border-border-subtle flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+        <div>
+          <div class="w-12 h-12 rounded-full bg-accent-gold/10 text-accent-gold flex items-center justify-center mx-auto mb-4 border border-accent-gold/30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path></svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-primary mb-1">Resepsi Pernikahan</h3>
+          <p id="resepsi-date" class="font-serif font-bold text-accent-maroon text-sm mb-1"></p>
+          <p id="resepsi-time" class="text-xs font-semibold text-primary mb-3"></p>
+          
+          <div class="bg-bg-card p-3.5 rounded-xl border border-border-subtle mb-4">
+            <p id="resepsi-venue" class="text-xs font-bold text-primary uppercase"></p>
+            <p id="resepsi-address" class="text-[11px] text-text-muted mt-1 leading-snug"></p>
+          </div>
+        </div>
+        <a id="resepsi-maps-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold w-full py-2.5 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <span>Petunjuk Arah (Google Maps)</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 6: GALERI FOTO & VIDEO (LIGHTBOX + YOUTUBE UNLISTED DYNAMIC)
+       ====================================================================== -->
+  <section id="gallery" class="relative py-20 px-4 bg-bg-card overflow-hidden">
+    <div class="max-w-3xl mx-auto text-center mb-12" data-aos="fade-up">
+      <span class="text-xs font-serif text-accent-gold uppercase tracking-[0.25em] font-semibold">Our Sweet Memories</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary mt-1">Galeri Foto &amp; Video</h2>
+      <div class="w-12 h-0.5 bg-accent-gold mx-auto mt-3"></div>
+      <p class="text-xs sm:text-sm text-text-muted mt-2">Momen-momen indah perjalanan cinta kami yang terabadikan</p>
+    </div>
+
+    <!-- Video Embed (YouTube Unlisted / Nocookie) -->
+    <div class="max-w-3xl mx-auto mb-12" data-aos="zoom-in" data-aos-duration="1000">
+      <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border-2 border-accent-gold/40 bg-black">
+        <iframe 
+          id="youtube-video-iframe"
+          class="w-full h-full"
+          src="" 
+          title="Wedding Video" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Photo Grid (Populated Dynamically via js/render.js) -->
+    <div id="gallery-photos-grid" class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6"></div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 7: AMPLOP DIGITAL & KIRIM HADIAH (GIFT DYNAMIC)
+       ====================================================================== -->
+  <section id="gift" class="relative py-20 px-4 bg-bg-main overflow-hidden">
+    <div class="max-w-3xl mx-auto text-center mb-8" data-aos="fade-up">
+      <span class="text-xs font-serif text-accent-gold uppercase tracking-[0.25em] font-semibold">Wedding Gift</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary mt-1">Amplop Digital &amp; Kado</h2>
+      <div class="w-12 h-0.5 bg-accent-gold mx-auto mt-3"></div>
+      <p class="text-xs sm:text-sm text-text-muted mt-3 max-w-lg mx-auto">
+        Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat menggunakan fasilitas di bawah ini:
+      </p>
+
+      <!-- Toggle Button -->
+      <button id="btn-toggle-amplop" class="btn-gold mt-6 inline-flex items-center gap-2.5 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold shadow-md">
+        <svg class="w-4 h-4 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+        <span>Kirim Hadiah Pernikahan</span>
+        <svg id="amplop-toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+    </div>
+
+    <!-- Toggleable Gift Container -->
+    <div id="amplop-content" class="max-w-2xl mx-auto hidden transition-all duration-500">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        
+        <!-- Bank Groom Card -->
+        <div class="glass-card rounded-3xl p-6 border border-border-subtle shadow-md text-left relative overflow-hidden">
+          <div class="flex justify-between items-center mb-4">
+            <span id="bank-groom-name" class="font-serif font-bold text-lg text-primary tracking-wider"></span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary text-accent-gold border border-accent-gold/40">ATM / M-BANKING</span>
+          </div>
+          <p class="text-xs text-text-muted mb-1">Nomor Rekening:</p>
+          <div id="bank-groom-acc" class="font-serif font-bold text-xl text-accent-maroon tracking-wider mb-2"></div>
+          <p id="bank-groom-holder" class="text-xs text-text-main font-semibold mb-4"></p>
+          <button id="btn-copy-groom-bank" class="btn-outline-gold w-full py-2 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+            <span>Salin No. Rekening</span>
+          </button>
+        </div>
+
+        <!-- Bank Bride Card -->
+        <div class="glass-card rounded-3xl p-6 border border-border-subtle shadow-md text-left relative overflow-hidden">
+          <div class="flex justify-between items-center mb-4">
+            <span id="bank-bride-name" class="font-serif font-bold text-lg text-primary tracking-wider"></span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary text-accent-gold border border-accent-gold/40">ATM / M-BANKING</span>
+          </div>
+          <p class="text-xs text-text-muted mb-1">Nomor Rekening:</p>
+          <div id="bank-bride-acc" class="font-serif font-bold text-xl text-accent-maroon tracking-wider mb-2"></div>
+          <p id="bank-bride-holder" class="text-xs text-text-main font-semibold mb-4"></p>
+          <button id="btn-copy-bride-bank" class="btn-outline-gold w-full py-2 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+            <span>Salin No. Rekening</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Physical Gift Address -->
+      <div class="glass-card-white rounded-3xl p-6 border border-accent-gold/50 shadow-lg text-left mt-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-full bg-accent-gold/20 text-accent-gold flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          </div>
+          <div>
+            <h4 class="font-serif font-bold text-sm text-primary">Kirim Kado Fisik</h4>
+            <p id="gift-recipient-info" class="text-xs text-text-muted"></p>
+          </div>
+        </div>
+        <p id="gift-address-text" class="text-xs text-text-main bg-bg-card p-3 rounded-xl border border-border-subtle leading-relaxed mb-4"></p>
+        <button id="btn-copy-address" class="btn-gold w-full py-2.5 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+          <span>Salin Alamat Pengiriman</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 8: RSVP & BUKU TAMU / UCAPAN (DATABASE READY)
+       ====================================================================== -->
+  <section id="rsvp" class="relative py-20 px-4 bg-bg-card overflow-hidden">
+    <div class="max-w-3xl mx-auto text-center mb-10" data-aos="fade-up">
+      <span class="text-xs font-serif text-accent-gold uppercase tracking-[0.25em] font-semibold">RSVP &amp; Wishes</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary mt-1">Konfirmasi &amp; Doa Restu</h2>
+      <div class="w-12 h-0.5 bg-accent-gold mx-auto mt-3"></div>
+      <p class="text-xs sm:text-sm text-text-muted mt-2">Bantu kami mempersiapkan kehadiran Anda dengan mengisi formulir di bawah ini</p>
+    </div>
+
+    <!-- Attendance Summary Statistics Counter -->
+    <div class="max-w-2xl mx-auto grid grid-cols-3 gap-3 mb-8" data-aos="fade-up">
+      <div class="bg-white p-3.5 rounded-2xl border border-border-subtle text-center shadow-sm">
+        <span id="count-hadir" class="font-serif font-bold text-xl sm:text-2xl text-primary">0</span>
+        <p class="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider mt-1">Akan Hadir</p>
+      </div>
+      <div class="bg-white p-3.5 rounded-2xl border border-border-subtle text-center shadow-sm">
+        <span id="count-tidak-hadir" class="font-serif font-bold text-xl sm:text-2xl text-accent-maroon">0</span>
+        <p class="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider mt-1">Berhalangan</p>
+      </div>
+      <div class="bg-white p-3.5 rounded-2xl border border-border-subtle text-center shadow-sm">
+        <span id="count-ragu" class="font-serif font-bold text-xl sm:text-2xl text-accent-gold">0</span>
+        <p class="text-[10px] sm:text-xs text-text-muted uppercase tracking-wider mt-1">Masih Ragu</p>
+      </div>
+    </div>
+
+    <!-- RSVP Form Container -->
+    <div class="max-w-2xl mx-auto glass-card-white rounded-3xl p-6 sm:p-8 border border-border-subtle shadow-xl mb-12" data-aos="fade-up">
+      <form id="rsvp-form" class="space-y-4">
+        
+        <!-- Nama Tamu -->
+        <div>
+          <label for="rsvp-name" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Nama Lengkap *</label>
+          <input type="text" id="rsvp-name" required placeholder="Contoh: Bapak Joko Santoso" class="w-full px-4 py-3 rounded-xl border border-border-subtle focus:border-accent-gold focus:outline-none text-xs sm:text-sm bg-white" />
+        </div>
+
+        <!-- No WhatsApp -->
+        <div>
+          <label for="rsvp-whatsapp" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">No. WhatsApp (Opsional)</label>
+          <input type="tel" id="rsvp-whatsapp" placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-border-subtle focus:border-accent-gold focus:outline-none text-xs sm:text-sm bg-white" />
+        </div>
+
+        <!-- Status Kehadiran Radio Pills -->
+        <div>
+          <label class="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">Konfirmasi Kehadiran *</label>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="cursor-pointer">
+              <input type="radio" name="kehadiran" value="hadir" checked class="hidden rsvp-pill-input" />
+              <div class="rsvp-pill-label p-2.5 text-center rounded-xl border border-border-subtle text-xs font-medium bg-bg-card transition duration-200">
+                Hadir
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="kehadiran" value="ragu" class="hidden rsvp-pill-input" />
+              <div class="rsvp-pill-label p-2.5 text-center rounded-xl border border-border-subtle text-xs font-medium bg-bg-card transition duration-200">
+                Ragu-ragu
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="kehadiran" value="tidak_hadir" class="hidden rsvp-pill-input" />
+              <div class="rsvp-pill-label p-2.5 text-center rounded-xl border border-border-subtle text-xs font-medium bg-bg-card transition duration-200">
+                Tidak Hadir
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Jumlah Pax -->
+        <div>
+          <label for="rsvp-pax" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Jumlah Tamu yang Hadir</label>
+          <select id="rsvp-pax" class="w-full px-4 py-3 rounded-xl border border-border-subtle focus:border-accent-gold focus:outline-none text-xs sm:text-sm bg-white">
+            <option value="1">1 Orang</option>
+            <option value="2">2 Orang</option>
+            <option value="3">3 Orang</option>
+            <option value="4">4 Orang</option>
+            <option value="5">5+ Orang (Rombongan)</option>
+          </select>
+        </div>
+
+        <!-- Ucapan & Doa Restu -->
+        <div>
+          <label for="rsvp-message" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Ucapan &amp; Doa Restu *</label>
+          <textarea id="rsvp-message" required rows="4" placeholder="Tuliskan ucapan selamat dan doa terbaik Anda..." class="w-full px-4 py-3 rounded-xl border border-border-subtle focus:border-accent-gold focus:outline-none text-xs sm:text-sm bg-white resize-none"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="btn-rsvp-submit" class="btn-gold w-full py-3.5 rounded-xl font-semibold text-xs sm:text-sm shadow-md transition duration-300">
+          Kirim Ucapan &amp; Konfirmasi
+        </button>
+      </form>
+    </div>
+
+    <!-- Realtime Comment Feed -->
+    <div class="max-w-2xl mx-auto" data-aos="fade-up">
+      <div class="flex items-center justify-between mb-4 px-1">
+        <h3 class="font-serif font-bold text-sm sm:text-base text-primary">Doa Restu Sahabat &amp; Kerabat</h3>
+        <span id="total-wishes-count" class="text-xs font-medium text-text-muted bg-white px-3 py-1 rounded-full border border-border-subtle">0 Ucapan</span>
+      </div>
+
+      <div id="wishes-list" class="space-y-3 max-h-[500px] overflow-y-auto pr-1">
+        <!-- Rendered dynamically by js/rsvp.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 9: PENUTUP & TERIMA KASIH (WASSALAMU'ALAIKUM)
+       ====================================================================== -->
+  <section id="closing" class="relative py-24 px-4 bg-primary text-white text-center overflow-hidden">
+    <!-- Ambient Overlay -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80');"></div>
+
+    <div class="relative z-10 max-w-2xl mx-auto" data-aos="fade-up">
+      <!-- Closing Couple Avatar -->
+      <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full mx-auto p-1 bg-accent-gold shadow-2xl mb-6">
+        <img id="closing-photo" src="" alt="Foto Pengantin" class="w-full h-full object-cover rounded-full" />
+      </div>
+
+      <p class="text-xs sm:text-sm text-white/80 leading-relaxed max-w-lg mx-auto mb-6">
+        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu bagi kami berdua.
+      </p>
+
+      <h3 class="font-serif text-xl sm:text-2xl font-bold text-accent-gold mb-2">Wassalamu'alaikum Warahmatullahi Wabarakatuh</h3>
+      <p class="text-xs text-white/70 uppercase tracking-widest mb-6">Kami Yang Berbahagia,</p>
+
+      <h2 id="closing-couple-names" class="font-script text-5xl sm:text-7xl text-accent-gold mb-3"></h2>
+      <p class="text-xs text-white/70 font-serif tracking-wider">Beserta Seluruh Keluarga Besar</p>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEKSI 10: FOOTER & WATERMARK
+       ====================================================================== -->
+  <footer class="bg-[#36211F] text-white/60 text-center py-6 px-4 text-xs">
+    <div class="max-w-md mx-auto">
+      <p id="footer-wedding-title" class="mb-1 text-white/80 font-serif"></p>
+      <p class="text-[11px]">Made with ❤ by <a href="https://rumahundangan.id" target="_blank" rel="noopener" class="text-accent-gold hover:underline">Rumahundangan.id</a></p>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       FLOATING AUDIO CONTROLLER (Bottom Left)
+       ====================================================================== -->
+  <div id="audio-player-container" class="fixed bottom-6 left-6 z-[950] hidden transition-opacity duration-500">
+    <div class="relative group flex items-center">
+      <button id="btn-audio-toggle" class="audio-disc-player focus:outline-none" title="Putar / Hentikan Musik">
+        <div id="audio-disc" class="w-full h-full rounded-full flex items-center justify-center animate-spin-slow">
+          <div class="w-4 h-4 rounded-full bg-accent-gold flex items-center justify-center">
+            <div id="audio-icon">
+              <!-- Animated play/pause icon via js/audio.js -->
+            </div>
+          </div>
+        </div>
+      </button>
+      <div id="audio-track-title" class="hidden sm:block absolute left-14 bg-primary/90 text-white text-[11px] px-3 py-1.5 rounded-full backdrop-blur-md border border-accent-gold/40 shadow-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+        Lagu Pernikahan Kita
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       FLOATING BOTTOM NAVIGATION DOCK
+       ====================================================================== -->
+  <nav id="floating-nav" class="floating-bottom-nav px-4 py-2 hidden transition-opacity duration-500">
+    <div class="flex items-center gap-4 sm:gap-6 text-white/70 text-xs">
+      
+      <!-- Nav Hero / Cover -->
+      <a href="#hero" class="nav-link-item hover:text-accent-gold transition flex flex-col items-center gap-0.5" title="Beranda">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <span class="text-[9px] uppercase tracking-wider hidden sm:block">Home</span>
+      </a>
+
+      <!-- Nav Couple -->
+      <a href="#couple" class="nav-link-item hover:text-accent-gold transition flex flex-col items-center gap-0.5" title="Mempelai">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        <span class="text-[9px] uppercase tracking-wider hidden sm:block">Mempelai</span>
+      </a>
+
+      <!-- Nav Event -->
+      <a href="#event" class="nav-link-item hover:text-accent-gold transition flex flex-col items-center gap-0.5" title="Acara">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        <span class="text-[9px] uppercase tracking-wider hidden sm:block">Acara</span>
+      </a>
+
+      <!-- Nav Gallery -->
+      <a href="#gallery" class="nav-link-item hover:text-accent-gold transition flex flex-col items-center gap-0.5" title="Galeri">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        <span class="text-[9px] uppercase tracking-wider hidden sm:block">Galeri</span>
+      </a>
+
+      <!-- Nav Gift -->
+      <a href="#gift" class="nav-link-item hover:text-accent-gold transition flex flex-col items-center gap-0.5" title="Kado">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2v-6a2 2 0 00-2-2H5z"></path></svg>
+        <span class="text-[9px] uppercase tracking-wider hidden sm:block">Kado</span>
+      </a>
+
+      <!-- Nav RSVP -->
+      <a href="#rsvp" class="nav-link-item hover:text-accent-gold transition flex flex-col items-center gap-0.5" title="Ucapan">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        <span class="text-[9px] uppercase tracking-wider hidden sm:block">RSVP</span>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Environment Variable Loaders (Local env.js & Vercel /api/env) -->
+  <script src="js/env.js" onerror="this.remove()"></script>
+  <script src="/api/env" onerror="this.remove()"></script>
+
+  <!-- Application Modules -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
