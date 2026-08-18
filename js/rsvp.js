@@ -1,6 +1,13 @@
 /**
  * RSVP & WISHES MANAGER
- * Handles guest confirmations, wish submissions, counter calculations, and Supabase integration
+ * Handles guest confirmations, wish submissions, counter calculations, and Supabase integration.
+ *
+ * Guest flow:
+ *   1. Guest name is pre-registered in Supabase `guests` (with a unique `slug`).
+ *   2. Guest opens their personal link, e.g. `/keluarga-besar-dawam`.
+ *   3. We look the guest up by slug and show their name on the cover + hero + form.
+ *   4. The guest only picks "Konfirmasi Kehadiran" and writes "Ucapan & Doa Restu"
+ *      (no name / WhatsApp / pax input) — the existing row is UPDATED, not inserted.
  */
 
 import { WEDDING_CONFIG } from './config.js';
@@ -38,12 +45,16 @@ class RSVPManager {
   constructor() {
     this.wishes = [];
     this.storageKey = 'wedding_wishes_habib_adiba';
+    this.currentGuest = null;
+    this.slug = '';
     this.form = null;
     this.wishesListEl = null;
     this.countHadirEl = null;
     this.countTidakHadirEl = null;
     this.countRaguEl = null;
     this.totalWishesEl = null;
+    this.bannerEl = null;
+    this.notFoundEl = null;
   }
 
   async init() {
@@ -53,21 +64,22 @@ class RSVPManager {
     this.countTidakHadirEl = document.getElementById('count-tidak-hadir');
     this.countRaguEl = document.getElementById('count-ragu');
     this.totalWishesEl = document.getElementById('total-wishes-count');
+    this.bannerEl = document.getElementById('rsvp-guest-banner');
+    this.notFoundEl = document.getElementById('rsvp-not-found');
 
-    // Auto-fill guest name if available in URL query (?to=Nama+Tamu)
-    const guestInfo = Utils.getGuestInfo();
-    const nameInput = document.getElementById('rsvp-name');
-    const waInput = document.getElementById('rsvp-whatsapp');
-    
-    if (nameInput && guestInfo.isCustom) {
-      nameInput.value = guestInfo.name;
-    }
-    if (waInput && guestInfo.whatsapp) {
-      waInput.value = guestInfo.whatsapp;
-    }
+    this.slug = Utils.getGuestSlug();
 
     if (this.form) {
       this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    if (this.isSupabaseConfigured()) {
+      await this.resolveCurrentGuest();
+    } else {
+      this.showNotFound(
+        'Database Belum Terhubung',
+        'Hubungkan Supabase (isi <span class="font-mono">js/env.js</span>) agar tamu dapat melakukan konfirmasi.'
+      );
     }
 
     await this.loadWishes();
@@ -83,17 +95,91 @@ class RSVPManager {
     );
   }
 
+  supabaseUrl() {
+    return WEDDING_CONFIG.supabase.url.trim().replace(/\/+$/, '');
+  }
+
+  supabaseHeaders() {
+    return {
+      'apikey': WEDDING_CONFIG.supabase.anonKey.trim(),
+      'Authorization': `Bearer ${WEDDING_CONFIG.supabase.anonKey.trim()}`
+    };
+  }
+
+  /**
+   * Look up the current guest by slug and, when found, personalize the page
+   * and reveal the (simplified) RSVP form.
+   */
+  async resolveCurrentGuest() {
+    if (!this.slug) {
+      this.showNotFound();
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${this.supabaseUrl()}/rest/v1/guests?select=id,slug,nama_tamu,status_kehadiran,jumlah_pax&slug=eq.${encodeURIComponent(this.slug)}&limit=1`,
+        { headers: this.supabaseHeaders() }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        if (Array.isArray(data) && data.length > 0) {
+          this.currentGuest = data[0];
+          this.applyGuestToUI();
+          return;
+        }
+      } else {
+        console.warn('Guest lookup returned status:', response.status);
+      }
+    } catch (err) {
+      console.warn('Guest lookup failed:', err);
+    }
+
+    this.showNotFound();
+  }
+
+  applyGuestToUI() {
+    const guest = this.currentGuest;
+    if (!guest) return;
+
+    const coverEl = document.getElementById('guest-name-cover');
+    if (coverEl) coverEl.textContent = guest.nama_tamu;
+
+    const heroEl = document.getElementById('guest-name-hero');
+    if (heroEl) heroEl.textContent = `Spesial untuk: ${guest.nama_tamu}`;
+
+    if (this.bannerEl) {
+      this.bannerEl.textContent = `Konfirmasi kehadiran untuk: ${guest.nama_tamu}`;
+    }
+
+    if (this.form) this.form.classList.remove('hidden');
+    if (this.notFoundEl) this.notFoundEl.classList.add('hidden');
+  }
+
+  showNotFound(title, message) {
+    if (this.form) this.form.classList.add('hidden');
+    if (!this.notFoundEl) return;
+
+    this.notFoundEl.classList.remove('hidden');
+
+    const titleEl = this.notFoundEl.querySelector('.rsvp-not-found-title');
+    const textEl = this.notFoundEl.querySelector('.rsvp-not-found-text');
+
+    if (titleEl) titleEl.textContent = title || 'Tautan Undangan Tidak Ditemukan';
+    if (textEl) {
+      textEl.innerHTML = message ||
+        'Silakan buka tautan undangan pribadi Anda (mis. <span class="font-mono">/nama-tamu</span>) untuk melakukan konfirmasi.';
+    }
+  }
+
   async loadWishes() {
     if (this.isSupabaseConfigured()) {
       try {
+        // Only fetch rows that actually contain a wish (ucapan IS NOT NULL).
         const response = await fetch(
-          `${WEDDING_CONFIG.supabase.url.trim()}/rest/v1/guests?select=*&order=created_at.desc`,
-          {
-            headers: {
-              'apikey': WEDDING_CONFIG.supabase.anonKey.trim(),
-              'Authorization': `Bearer ${WEDDING_CONFIG.supabase.anonKey.trim()}`
-            }
-          }
+          `${this.supabaseUrl()}/rest/v1/guests?select=id,nama_tamu,status_kehadiran,jumlah_pax,ucapan,created_at,updated_at&ucapan=not.is.null&order=created_at.desc`,
+          { headers: this.supabaseHeaders() }
         );
         if (response.ok) {
           const data = await response.json();
@@ -129,20 +215,19 @@ class RSVPManager {
 
   async handleSubmit(e) {
     e.preventDefault();
-    const btnSubmit = document.getElementById('btn-rsvp-submit');
-    const originalText = btnSubmit ? btnSubmit.innerHTML : 'Kirim Konfirmasi';
 
-    const nama = document.getElementById('rsvp-name')?.value.trim();
-    const whatsapp = document.getElementById('rsvp-whatsapp')?.value.trim() || '';
-    const statusEl = document.querySelector('input[name="kehadiran"]:checked');
-    const status = statusEl ? statusEl.value : 'hadir';
-    const pax = parseInt(document.getElementById('rsvp-pax')?.value || '1', 10);
-    const ucapan = document.getElementById('rsvp-message')?.value.trim();
-
-    if (!nama) {
-      Utils.showToast('Mohon masukkan nama Anda', 'error');
+    if (!this.currentGuest) {
+      Utils.showToast('Tautan undangan tidak terdeteksi. Silakan gunakan tautan pribadi Anda.', 'error');
       return;
     }
+
+    const btnSubmit = document.getElementById('btn-rsvp-submit');
+    const originalText = btnSubmit ? btnSubmit.innerHTML : 'Kirim Ucapan &amp; Konfirmasi';
+
+    const statusEl = document.querySelector('input[name="kehadiran"]:checked');
+    const status = statusEl ? statusEl.value : 'hadir';
+    const ucapan = document.getElementById('rsvp-message')?.value.trim();
+
     if (!ucapan) {
       Utils.showToast('Mohon tuliskan ucapan & doa restu', 'error');
       return;
@@ -158,13 +243,10 @@ class RSVPManager {
       `;
     }
 
-    // Prepare clean payload for Supabase (UUID and created_at auto generated by PostgreSQL)
-    const supabasePayload = {
-      slug: (nama.toLowerCase().replace(/[^a-z0-9]/g, '-') || 'guest') + '-' + Date.now().toString(36),
-      nama_tamu: nama,
-      no_whatsapp: whatsapp || null,
+    // Update the existing pre-registered row — never insert, never overwrite
+    // nama_tamu / no_whatsapp / jumlah_pax.
+    const payload = {
       status_kehadiran: status,
-      jumlah_pax: pax,
       ucapan: ucapan
     };
 
@@ -172,48 +254,50 @@ class RSVPManager {
 
     if (this.isSupabaseConfigured()) {
       try {
-        const response = await fetch(`${WEDDING_CONFIG.supabase.url.trim()}/rest/v1/guests`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': WEDDING_CONFIG.supabase.anonKey.trim(),
-            'Authorization': `Bearer ${WEDDING_CONFIG.supabase.anonKey.trim()}`,
-            'Prefer': 'return=representation'
-          },
-          body: JSON.stringify(supabasePayload)
-        });
+        const response = await fetch(
+          `${this.supabaseUrl()}/rest/v1/guests?id=eq.${encodeURIComponent(this.currentGuest.id)}`,
+          {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': WEDDING_CONFIG.supabase.anonKey.trim(),
+              'Authorization': `Bearer ${WEDDING_CONFIG.supabase.anonKey.trim()}`,
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify(payload)
+          }
+        );
 
         if (response.ok) {
-          const inserted = await response.json();
-          this.wishes.unshift(inserted[0] || {
-            ...supabasePayload,
-            id: 'gen-' + Date.now(),
-            created_at: new Date().toISOString()
-          });
+          const updated = await response.json();
+          const row = (Array.isArray(updated) && updated[0]) || {
+            ...this.currentGuest,
+            ...payload,
+            created_at: this.currentGuest.created_at || new Date().toISOString()
+          };
+          this.upsertLocalWish(row);
           success = true;
         } else {
           const errBody = await response.text();
-          throw new Error(`Supabase insert error: ${response.status} ${errBody}`);
+          throw new Error(`Supabase update error: ${response.status} ${errBody}`);
         }
       } catch (err) {
-        console.warn('Supabase post error, saving locally:', err);
-        const fallbackObj = {
-          ...supabasePayload,
-          id: 'local-' + Date.now(),
-          created_at: new Date().toISOString()
-        };
-        this.wishes.unshift(fallbackObj);
+        console.warn('Supabase update error, saving locally:', err);
+        this.upsertLocalWish({
+          ...this.currentGuest,
+          ...payload,
+          created_at: this.currentGuest.created_at || new Date().toISOString()
+        });
         localStorage.setItem(this.storageKey, JSON.stringify(this.wishes));
         success = true;
       }
     } else {
-      // LocalStorage mode
-      const localObj = {
-        ...supabasePayload,
-        id: 'local-' + Date.now(),
-        created_at: new Date().toISOString()
-      };
-      this.wishes.unshift(localObj);
+      // LocalStorage mode (no database)
+      this.upsertLocalWish({
+        ...this.currentGuest,
+        ...payload,
+        created_at: this.currentGuest.created_at || new Date().toISOString()
+      });
       localStorage.setItem(this.storageKey, JSON.stringify(this.wishes));
       success = true;
     }
@@ -225,13 +309,23 @@ class RSVPManager {
 
     if (success) {
       Utils.showToast('Terima kasih! Konfirmasi dan doa restu Anda telah tersimpan.', 'success');
-      document.getElementById('rsvp-message').value = '';
+      const msgEl = document.getElementById('rsvp-message');
+      if (msgEl) msgEl.value = '';
       this.render();
 
-      // Smooth scroll to comments
       if (this.wishesListEl) {
         this.wishesListEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
+    }
+  }
+
+  upsertLocalWish(row) {
+    if (!row || !row.id) return;
+    const idx = this.wishes.findIndex(w => w.id === row.id);
+    if (idx >= 0) {
+      this.wishes[idx] = { ...this.wishes[idx], ...row };
+    } else {
+      this.wishes.unshift(row);
     }
   }
 
@@ -272,7 +366,7 @@ class RSVPManager {
     const html = this.wishes.map(wish => {
       const isHadir = wish.status_kehadiran === 'hadir';
       const isTidak = wish.status_kehadiran === 'tidak_hadir';
-      
+
       let badgeClass = 'bg-[#4A2E2B]/10 text-[#4A2E2B] border border-[#D9A05B]/40';
       let badgeText = 'Akan Hadir';
       let iconSvg = `<svg class="w-3 h-3 mr-1 text-[#D9A05B]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>`;

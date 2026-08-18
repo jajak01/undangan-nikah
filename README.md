@@ -71,34 +71,39 @@ undangan-nikah/
 
 ## 🚀 Cara Menjalankan Secara Lokal
 
-Buka terminal di direktori proyek ini dan jalankan server statis lokal:
+Buka terminal di direktori proyek ini lalu jalankan salah satu server berikut:
 
 ```bash
-# Opsi 1: Menggunakan Python
-python3 -m http.server 3000
+# Opsi 1 (disarankan): Node server bawaan — mendukung link pribadi tamu via path
+node serve.js
+# lalu buka http://localhost:3000/keluarga-besar-dawam
 
-# Opsi 2: Menggunakan npx serve
-npx serve .
+# Opsi 2: npx serve dengan SPA fallback
+npx serve -s .
+
+# Opsi 3: Python (hanya mendukung query ?slug=..., bukan path /slug)
+python3 -m http.server 3000
+# lalu buka http://localhost:3000/?slug=keluarga-besar-dawam
 ```
 
 Buka browser di `http://localhost:3000`.
 
 ---
 
-## 🏷️ Cara Personalisasi Tautan Tamu (`?to=...`)
+## 🏷️ Cara Personalisasi Tautan Tamu (`/slug`)
 
-Untuk membagikan link ke masing-masing tamu undangan dengan nama mereka yang muncul otomatis di Cover dan Form RSVP:
+Setiap tamu sudah terdaftar di database Supabase (`guests`) dengan kolom unik `slug`. Bagikan link pribadi tiap tamu berdasarkan `slug`-nya:
 
 | Format URL | Contoh |
 | :--- | :--- |
-| **Standard** | `https://undangan-nikah.vercel.app/?to=Bapak+Joko+Santoso` |
-| **Dengan Gelar** | `https://undangan-nikah.vercel.app/?to=dr.+Ahmad+Fauzi%2C+Sp.A` |
-| **Dengan Nomor WhatsApp** | `https://undangan-nikah.vercel.app/?to=Bapak+Budi&wa=628123456789` |
+| **Path (produksi / node serve.js)** | `https://undangan-nikah.vercel.app/keluarga-besar-dawam` |
+| **Query (fallback lokal Python)** | `http://localhost:3000/?slug=keluarga-besar-dawam` |
 
-Nama tamu yang disisipkan di URL akan langsung:
-1. Tertera di kartu **Kepada Yth. Bapak/Ibu/Saudara/i** pada halaman Cover.
-2. Muncul di sub-heading Hero Section.
-3. Mengisi otomatis (*auto-fill*) kolom **Nama Lengkap** di formulir RSVP.
+Saat link dibuka:
+1. Aplikasi mencari tamu berdasarkan `slug` di Supabase.
+2. Nama tamu otomatis tampil di kartu **Kepada Yth.** pada Cover dan di Hero Section.
+3. Form RSVP hanya menampilkan **Konfirmasi Kehadiran** dan **Ucapan & Doa Restu** — tamu tidak perlu menulis nama / No. WhatsApp / jumlah tamu.
+4. Konfirmasi akan **memperbarui** baris tamu yang sudah ada di database (bukan membuat baris baru).
 
 ---
 
@@ -115,6 +120,21 @@ Nama tamu yang disisipkan di URL akan langsung:
    ```
 6. **Deployment di Vercel:** Masukkan variabel `SUPABASE_URL` dan `SUPABASE_ANON_KEY` pada menu **Settings > Environment Variables** di Dashboard Vercel Anda.
 7. Selesai! Semua konfirmasi kehadiran dan ucapan dari tamu akan otomatis tersimpan di database Supabase secara *realtime* tanpa mengekspos kredensial ke repositori Git publik.
+
+### ✨ Tautan Tamu Otomatis (copy-paste dari Table Editor)
+
+Setelah skema di atas di-*run*, di **Table Editor > guests** ada 2 kolom yang terisi otomatis:
+
+- **`slug`** — dibuat otomatis dari `nama_tamu` (contoh: `Bpk. M. Dawam & Keluarga` → `bpk-m-dawam-dan-keluarga`). Jika dua tamu bernama sama, otomatis menjadi `...-2`, `...-3`, dst. Kolom ini bisa juga diisi manual (tetap dinormalisasi otomatis).
+- **`link_tamu`** — tautan undangan lengkap siap salin, contoh: `https://undangan-nikah.vercel.app/bpk-m-dawam-dan-keluarga`. Kolom ini *generated* (read-only) dan otomatis mengikuti `slug`.
+
+**Cara pakai:** di Table Editor cukup isi `nama_tamu` (dan opsional `no_whatsapp`), simpan barisnya, lalu salin nilai `link_tamu` dan kirim ke tamu tersebut.
+
+> ⚠️ **Ganti domain final** di fungsi `public.invitation_base_url()` di dalam `supabase_schema.sql` sebelum berbagi link (saat ini masih placeholder `https://undangan-nikah.vercel.app/`). Setelah menggantinya, jalankan dua perintah berikut agar semua `link_tamu` lama ikut terhitung ulang:
+> ```sql
+> ALTER TABLE public.guests ALTER COLUMN link_tamu DROP EXPRESSION;
+> ALTER TABLE public.guests ALTER COLUMN link_tamu ADD GENERATED ALWAYS AS (public.invitation_base_url() || slug) STORED;
+> ```
 
 ---
 

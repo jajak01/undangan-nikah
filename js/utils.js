@@ -29,6 +29,29 @@ export const Utils = {
   },
 
   /**
+   * Resolve the personal invitation slug for the current page.
+   * Primary: URL path segment, e.g. "/keluarga-besar-dawam" -> "keluarga-besar-dawam".
+   * Fallback: ?slug=keluarga-besar-dawam (handy on a plain static server without rewrites).
+   */
+  getGuestSlug() {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get('slug');
+    if (fromQuery) {
+      return decodeURIComponent(fromQuery.replace(/\+/g, ' ')).trim();
+    }
+
+    let path = (window.location.pathname || '').replace(/^\/+|\/+$/g, '');
+    if (!path) return '';
+
+    const segment = path.split('/')[0];
+    try {
+      return decodeURIComponent(segment).trim();
+    } catch (e) {
+      return segment.trim();
+    }
+  },
+
+  /**
    * Show Toast Notification Banner
    */
   showToast(message, type = "success") {

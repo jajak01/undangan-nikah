@@ -10,20 +10,20 @@ export const WEDDING_CONFIG = {
     groom: {
       fullName: "Edita Efendi",
       shortName: "Fendi",
-      father: "xxxx",
-      mother: "xxxx",
-      childOrder: "Putra Kedua",
+      father: "Saridi",
+      mother: "Surami",
+      childOrder: "Pxxxxa",
       instagram: "https://instagram.com/habib",
       instagramHandle: "@habib",
       // CDN / Placeholder Photo
       photo: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.37.40_AM_r6wacc.jpg"
     },
     bride: {
-      fullName: "Tamara",
+      fullName: "Tamara Andiliani",
       shortName: "Tamara",
-      father: "xxxx",
-      mother: "xxxx",
-      childOrder: "Putri Pertama",
+      father: "Andi Wahyu Lukito",
+      mother: "Sugiyarti",
+      childOrder: "xxx",
       instagram: "https://instagram.com/adiba",
       instagramHandle: "@adiba",
       // CDN / Placeholder Photo
@@ -36,32 +36,32 @@ export const WEDDING_CONFIG = {
   // Event Schedule & Locations
   event: {
     // Timestamp ISO & target (Senin, 28 Desember 2026 08:00 WIB / UTC+7)
-    targetTimestamp: 1798426800000, // 2026-12-28T08:00:00+07:00
-    dateFormatted: "Senin, 28 Desember 2026",
-    day: "Senin",
-    dateNumber: "28",
-    monthYear: "Desember 2026",
+    targetTimestamp: 1789645200000, // 2026-12-28T08:00:00+07:00
+    dateFormatted: "Kamis, 17 September 2026",
+    day: "Kamis",
+    dateNumber: "17",
+    monthYear: "September 2026",
     
     // Akad Nikah
     akad: {
       title: "Akad Nikah",
-      date: "Senin, 28 Desember 2026",
+      date: "Kamis, 17 September 2026",
       time: "08:00 WIB - Selesai",
-      venue: "KEDIAMAN MEMPELAI WANITA",
-      address: "Ds Pagu, Kec. Wates, Kab. Kediri, Jawa Timur",
+      venue: "KEDIAMAN MEMPELAI PRIA",
+      address: "Sempu 0036/009, Pringombo Rongkop, Gunungkidul",
       mapsUrl: "https://maps.google.com/?q=Ds+Pagu+Wates+Kediri+Jawa+Timur",
-      calendarTitle: "Akad Nikah Habib & Adiba"
+      calendarTitle: "Ijab Fendi & Tamara"
     },
 
     // Resepsi
     resepsi: {
       title: "Resepsi Pernikahan",
-      date: "Senin, 28 Desember 2026",
+      date: "Minggu, 20 September 2026",
       time: "10:00 WIB - Selesai",
-      venue: "KEDIAMAN MEMPELAI WANITA",
-      address: "Ds Pagu, Kec. Wates, Kab. Kediri, Jawa Timur",
+      venue: "KEDIAMAN MEMPELAI PRIA",
+      address: "Sempu 0036/009, Pringombo Rongkop, Gunungkidul",
       mapsUrl: "https://maps.google.com/?q=Ds+Pagu+Wates+Kediri+Jawa+Timur",
-      calendarTitle: "Resepsi Pernikahan Habib & Adiba"
+      calendarTitle: "Ijab Fendi & Tamara"
     },
 
     // Live Streaming
@@ -99,9 +99,9 @@ export const WEDDING_CONFIG = {
     
     // Background Audio (Lagu Pernikahan Kita / Wedding Instrumental)
     // You can host MP3 on Cloudinary or static folder
-    backgroundMusic: "https://res.cloudinary.com/dpvjfnw6d/video/upload/v1711200000/wedding-song.mp3",
+    backgroundMusic: "https://res.cloudinary.com/daiatjplq/video/upload/v1787052824/wijaya_xgcztu.mp3",
     audioFallback: "https://cdn.pixabay.com/download/audio/2022/02/22/audio_c0c978007a.mp3?filename=romantic-wedding-110091.mp3",
-    songTitle: "Tiara Andini & Arsy Widianto – Lagu Pernikahan Kita",
+    songTitle: "KUSUMA WIJAYA",
 
     // Gallery Photos (Cloudinary CDN links with curated wedding aesthetics)
     gallery: [
@@ -150,18 +150,18 @@ export const WEDDING_CONFIG = {
       bankName: "BCA",
       bankLogo: "BCA",
       accountNumber: "12345678",
-      accountHolder: "Habib Yulianto"
+      accountHolder: "Edita Efendi"
     },
     bankBride: {
       bankName: "MANDIRI",
       bankLogo: "MANDIRI",
       accountNumber: "87654321098",
-      accountHolder: "Adiba Putri Syakila"
+      accountHolder: "Edita Efendi"
     },
     physicalGift: {
-      recipient: "Habib Yulianto & Adiba",
+      recipient: "Edita Efendi",
       phone: "081234567890",
-      address: "Ds Pagu, RT 02 / RW 01, Kec. Wates, Kab. Kediri, Jawa Timur, 64174"
+      address: "Sempu 0036/009, Pringombo Rongkop, Gunungkidul"
     }
   },
 

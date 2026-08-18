@@ -49,7 +49,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body class="bg-bg-main text-text-main font-sans antialiased selection:bg-accent-gold/20 selection:text-primary">
@@ -259,7 +259,7 @@
             <img id="groom-photo" src="" alt="Mempelai Pria" class="w-full h-full object-cover rounded-full shadow-md" />
           </div>
         </div>
-        <h3 id="groom-full-name" class="font-serif text-2xl font-bold text-primary mb-1"></h3>
+        <h3 id="groom-full-name" class="font-script text-5xl font-bold text-primary mb-1"></h3>
         <p class="text-xs text-accent-gold font-medium uppercase tracking-widest mb-3">Mempelai Pria</p>
         <p id="groom-parents-info" class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4"></p>
         <a id="groom-instagram" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary hover:bg-primary hover:text-white transition duration-300">
@@ -275,7 +275,7 @@
             <img id="bride-photo" src="" alt="Mempelai Wanita" class="w-full h-full object-cover rounded-full shadow-md" />
           </div>
         </div>
-        <h3 id="bride-full-name" class="font-serif text-2xl font-bold text-primary mb-1"></h3>
+        <h3 id="bride-full-name" class="font-script text-5xl font-bold text-primary mb-1"></h3>
         <p class="text-xs text-accent-maroon font-medium uppercase tracking-widest mb-3">Mempelai Wanita</p>
         <p id="bride-parents-info" class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4"></p>
         <a id="bride-instagram" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary hover:bg-primary hover:text-white transition duration-300">
@@ -323,26 +323,8 @@
     </div>
 
     <!-- Cards Grid -->
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
       
-      <!-- Card 1: Live Streaming -->
-      <div class="glass-card rounded-3xl p-6 sm:p-7 text-center shadow-md border border-border-subtle flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
-        <div>
-          <div class="w-12 h-12 rounded-full bg-accent-maroon/10 text-accent-maroon flex items-center justify-center mx-auto mb-4 border border-accent-maroon/20">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-primary mb-1">Live Streaming</h3>
-          <span class="inline-block px-3 py-1 rounded-full bg-accent-maroon text-white text-xs font-semibold mb-3">Siaran Langsung</span>
-          <p class="text-xs sm:text-sm text-text-muted mb-2">Bagi keluarga dan sahabat yang berhalangan hadir secara langsung:</p>
-          <p id="stream-date" class="font-serif font-bold text-primary text-sm mb-1"></p>
-          <p id="stream-time" class="text-xs font-medium text-accent-maroon mb-4"></p>
-        </div>
-        <a id="stream-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold w-full py-2.5 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-2">
-          <svg class="w-4 h-4 text-accent-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          <span id="stream-btn-text"></span>
-        </a>
-      </div>
-
       <!-- Card 2: Akad Nikah -->
       <div class="glass-card-white rounded-3xl p-6 sm:p-7 text-center shadow-xl border-2 border-accent-gold flex flex-col justify-between relative transform md:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent-gold text-white text-[11px] font-bold px-4 py-0.5 rounded-full uppercase tracking-wider shadow">
@@ -352,7 +334,7 @@
           <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 border border-accent-gold/40 mt-1">
             <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
-          <h3 class="font-serif text-xl font-bold text-primary mb-1">Akad Nikah</h3>
+          <h3 class="font-serif text-xl font-bold text-primary mb-1">Ijab Qobul</h3>
           <p id="akad-date" class="font-serif font-bold text-accent-maroon text-sm mb-1"></p>
           <p id="akad-time" class="text-xs font-semibold text-primary mb-3"></p>
           
@@ -373,7 +355,7 @@
           <div class="w-12 h-12 rounded-full bg-accent-gold/10 text-accent-gold flex items-center justify-center mx-auto mb-4 border border-accent-gold/30">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path></svg>
           </div>
-          <h3 class="font-serif text-xl font-bold text-primary mb-1">Resepsi Pernikahan</h3>
+          <h3 class="font-serif text-xl font-bold text-primary mb-1">Ngunduh Mantu</h3>
           <p id="resepsi-date" class="font-serif font-bold text-accent-maroon text-sm mb-1"></p>
           <p id="resepsi-time" class="text-xs font-semibold text-primary mb-3"></p>
           
@@ -427,7 +409,7 @@
   <section id="gift" class="relative py-20 px-4 bg-bg-main overflow-hidden">
     <div class="max-w-3xl mx-auto text-center mb-8" data-aos="fade-up">
       <span class="text-xs font-serif text-accent-gold uppercase tracking-[0.25em] font-semibold">Wedding Gift</span>
-      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary mt-1">Amplop Digital &amp; Kado</h2>
+      <h2 class="font-semibold text-2xl sm:text-3xl font-bold text-primary mt-1">Amplop Digital &amp; Kado</h2>
       <div class="w-12 h-0.5 bg-accent-gold mx-auto mt-3"></div>
       <p class="text-xs sm:text-sm text-text-muted mt-3 max-w-lg mx-auto">
         Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat menggunakan fasilitas di bawah ini:
@@ -445,57 +427,126 @@
     <div id="amplop-content" class="max-w-2xl mx-auto hidden transition-all duration-500">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         
-        <!-- Bank Groom Card -->
-        <div class="glass-card rounded-3xl p-6 border border-border-subtle shadow-md text-left relative overflow-hidden">
-          <div class="flex justify-between items-center mb-4">
-            <span id="bank-groom-name" class="font-serif font-bold text-lg text-primary tracking-wider"></span>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary text-accent-gold border border-accent-gold/40">ATM / M-BANKING</span>
+        <!-- Bank Groom Card - Redesigned as realistic credit card -->
+        <div class="rounded-3xl border border-border-subtle shadow-2xl relative overflow-hidden aspect-[1.586/1] bg-white text-left group">
+          <!-- Background Gradient and Pattern (Mimicking the image) -->
+          <div class="absolute inset-0 bg-gradient-to-br from-white via-white to-neutral-200 opacity-90"></div>
+          <div class="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwaDIwdjIwSDIWMjB6TTAgMjBoMjB2MjBIMFYyMHoyMCAwaDIwdjIwSDIwVjB6Ii8+PC9nPjwvZz48L3N2Zz4=')] bg-repeat"></div>
+
+          <!-- Inner Content Container -->
+          <div class="relative z-10 p-6 flex flex-col h-full">
+            <!-- Top Row: Bank Logo -->
+            <div class="flex justify-end mb-1">
+              <!-- Replace this with an actual <img id="bank-groom-logo" src="bca-logo.png" /> in production -->
+              <span id="bank-groom-name" class="font-bold text-lg text-primary tracking-tight">BCA</span>
+            </div>
+
+            <!-- Middle Row: EMV Chip and Number -->
+            <div class="flex-grow flex flex-col justify-center">
+              <!-- Golden Chip Simulation -->
+              <div class="w-12 h-9 rounded-md bg-gradient-to-b from-yellow-300 to-yellow-500 border border-yellow-600/50 mb-4 p-1 flex flex-wrap gap-px">
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+              </div>
+              
+              <!-- Account Number -->
+              <div id="bank-groom-acc" class="font-mono text-2xl font-medium text-neutral-800 tracking-wider">
+                <!-- Populated from config.js (e.g., 1234 5678) -->
+              </div>
+            </div>
+
+            <!-- Bottom Row: Card Holder Name and Floating Copy Button -->
+            <div class="flex justify-between items-end">
+              <p id="bank-groom-holder" class="text-sm text-neutral-600 uppercase tracking-wide font-medium">
+                <!-- Populated from config.js (e.g., HABIB) -->
+              </p>
+
+              <!-- Small Floating Copy Button (matching reference image) -->
+              <button id="btn-copy-groom-bank" class="bg-white hover:bg-neutral-50 shadow-md border border-neutral-200 text-neutral-800 px-3.5 py-2.5 rounded-xl text-xs font-semibold inline-flex items-center gap-1.5 transition duration-300 group-hover:scale-105">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                <span class="leading-none">Copy</span>
+              </button>
+            </div>
           </div>
-          <p class="text-xs text-text-muted mb-1">Nomor Rekening:</p>
-          <div id="bank-groom-acc" class="font-serif font-bold text-xl text-accent-maroon tracking-wider mb-2"></div>
-          <p id="bank-groom-holder" class="text-xs text-text-main font-semibold mb-4"></p>
-          <button id="btn-copy-groom-bank" class="btn-outline-gold w-full py-2 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-            <span>Salin No. Rekening</span>
-          </button>
         </div>
 
-        <!-- Bank Bride Card -->
-        <div class="glass-card rounded-3xl p-6 border border-border-subtle shadow-md text-left relative overflow-hidden">
-          <div class="flex justify-between items-center mb-4">
-            <span id="bank-bride-name" class="font-serif font-bold text-lg text-primary tracking-wider"></span>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary text-accent-gold border border-accent-gold/40">ATM / M-BANKING</span>
+        <!-- Bank Bride Card - Redesigned as realistic credit card -->
+        <div class="rounded-3xl border border-border-subtle shadow-2xl relative overflow-hidden aspect-[1.586/1] bg-white text-left group">
+          <!-- Background Gradient and Pattern -->
+          <div class="absolute inset-0 bg-gradient-to-br from-white via-white to-neutral-200 opacity-90"></div>
+          <div class="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwaDIwdjIwSDIWMjB6TTAgMjBoMjB2MjBIMFYyMHoyMCAwaDIwdjIwSDIwVjB6Ii8+PC9nPjwvZz48L3N2Zz4=')] bg-repeat"></div>
+
+          <div class="relative z-10 p-6 flex flex-col h-full">
+            <div class="flex justify-end mb-1">
+              <span id="bank-bride-name" class="font-bold text-lg text-primary tracking-tight">MANDIRI</span>
+            </div>
+
+            <div class="flex-grow flex flex-col justify-center">
+              <div class="w-12 h-9 rounded-md bg-gradient-to-b from-yellow-300 to-yellow-500 border border-yellow-600/50 mb-4 p-1 flex flex-wrap gap-px">
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+                <div class="w-2 h-2 bg-yellow-700/20 rounded-sm"></div>
+              </div>
+              
+              <div id="bank-bride-acc" class="font-mono text-2xl font-medium text-neutral-800 tracking-wider">
+                <!-- Populated from config.js -->
+              </div>
+            </div>
+
+            <div class="flex justify-between items-end">
+              <p id="bank-bride-holder" class="text-sm text-neutral-600 uppercase tracking-wide font-medium">
+                <!-- Populated from config.js -->
+              </p>
+
+              <button id="btn-copy-bride-bank" class="bg-white hover:bg-neutral-50 shadow-md border border-neutral-200 text-neutral-800 px-3.5 py-2.5 rounded-xl text-xs font-semibold inline-flex items-center gap-1.5 transition duration-300 group-hover:scale-105">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                <span class="leading-none">Copy</span>
+              </button>
+            </div>
           </div>
-          <p class="text-xs text-text-muted mb-1">Nomor Rekening:</p>
-          <div id="bank-bride-acc" class="font-serif font-bold text-xl text-accent-maroon tracking-wider mb-2"></div>
-          <p id="bank-bride-holder" class="text-xs text-text-main font-semibold mb-4"></p>
-          <button id="btn-copy-bride-bank" class="btn-outline-gold w-full py-2 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-            <span>Salin No. Rekening</span>
-          </button>
         </div>
 
       </div>
 
-      <!-- Physical Gift Address -->
-      <div class="glass-card-white rounded-3xl p-6 border border-accent-gold/50 shadow-lg text-left mt-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="w-10 h-10 rounded-full bg-accent-gold/20 text-accent-gold flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-          </div>
-          <div>
-            <h4 class="font-serif font-bold text-sm text-primary">Kirim Kado Fisik</h4>
-            <p id="gift-recipient-info" class="text-xs text-text-muted"></p>
-          </div>
-        </div>
-        <p id="gift-address-text" class="text-xs text-text-main bg-bg-card p-3 rounded-xl border border-border-subtle leading-relaxed mb-4"></p>
-        <button id="btn-copy-address" class="btn-gold w-full py-2.5 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-2">
-          <svg class="w-4 h-4 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-          <span>Salin Alamat Pengiriman</span>
-        </button>
-      </div>
+ <!-- Physical Gift Address -->
 
-    </div>
+<div class="glass-card-white rounded-3xl p-6 border border-accent-gold/50 shadow-lg text-left mt-6">
+
+<div class="flex items-center gap-3 mb-3">
+
+<div class="w-10 h-10 rounded-full bg-accent-gold/20 text-accent-gold flex items-center justify-center flex-shrink-0">
+
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+
+</div>
+
+<div>
+
+<h4 class="font-serif font-bold text-sm text-primary">Kirim Kado Fisik</h4>
+
+<p id="gift-recipient-info" class="text-xs text-text-muted"></p>
+
+</div>
+
+</div>
+
+<p id="gift-address-text" class="text-xs text-text-main bg-bg-card p-3 rounded-xl border border-border-subtle leading-relaxed mb-4"></p>
+
+<button id="btn-copy-address" class="btn-gold w-full py-2.5 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-2">
+
+<svg class="w-4 h-4 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+
+<span>Salin Alamat Pengiriman</span>
+
+</button>
+
+</div>
+
+
+</div> 
   </section>
 
   <!-- ======================================================================
@@ -527,19 +578,9 @@
 
     <!-- RSVP Form Container -->
     <div class="max-w-2xl mx-auto glass-card-white rounded-3xl p-6 sm:p-8 border border-border-subtle shadow-xl mb-12" data-aos="fade-up">
-      <form id="rsvp-form" class="space-y-4">
-        
-        <!-- Nama Tamu -->
-        <div>
-          <label for="rsvp-name" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Nama Lengkap *</label>
-          <input type="text" id="rsvp-name" required placeholder="Contoh: Bapak Joko Santoso" class="w-full px-4 py-3 rounded-xl border border-border-subtle focus:border-accent-gold focus:outline-none text-xs sm:text-sm bg-white" />
-        </div>
-
-        <!-- No WhatsApp -->
-        <div>
-          <label for="rsvp-whatsapp" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">No. WhatsApp (Opsional)</label>
-          <input type="tel" id="rsvp-whatsapp" placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-border-subtle focus:border-accent-gold focus:outline-none text-xs sm:text-sm bg-white" />
-        </div>
+      <form id="rsvp-form" class="space-y-4 hidden">
+        <!-- Personalized guest banner (filled by rsvp.js after slug lookup) -->
+        <div id="rsvp-guest-banner" class="text-center py-2.5 px-3 rounded-xl bg-bg-card border border-border-subtle text-xs sm:text-sm text-text-muted"></div>
 
         <!-- Status Kehadiran Radio Pills -->
         <div>
@@ -566,18 +607,6 @@
           </div>
         </div>
 
-        <!-- Jumlah Pax -->
-        <div>
-          <label for="rsvp-pax" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Jumlah Tamu yang Hadir</label>
-          <select id="rsvp-pax" class="w-full px-4 py-3 rounded-xl border border-border-subtle focus:border-accent-gold focus:outline-none text-xs sm:text-sm bg-white">
-            <option value="1">1 Orang</option>
-            <option value="2">2 Orang</option>
-            <option value="3">3 Orang</option>
-            <option value="4">4 Orang</option>
-            <option value="5">5+ Orang (Rombongan)</option>
-          </select>
-        </div>
-
         <!-- Ucapan & Doa Restu -->
         <div>
           <label for="rsvp-message" class="block text-xs font-semibold text-primary uppercase tracking-wider mb-1.5">Ucapan &amp; Doa Restu *</label>
@@ -589,6 +618,13 @@
           Kirim Ucapan &amp; Konfirmasi
         </button>
       </form>
+
+      <!-- Notice shown when a personal invitation link is not detected -->
+      <div id="rsvp-not-found" class="text-center py-10 px-6 text-text-muted hidden">
+        <svg class="w-10 h-10 mx-auto mb-3 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path></svg>
+        <p class="rsvp-not-found-title text-sm font-semibold text-primary mb-1">Tautan Undangan Tidak Ditemukan</p>
+        <p class="rsvp-not-found-text text-xs">Silakan buka tautan undangan pribadi Anda (mis. <span class="font-mono">/nama-tamu</span>) untuk melakukan konfirmasi.</p>
+      </div>
     </div>
 
     <!-- Realtime Comment Feed -->
@@ -635,7 +671,7 @@
   <footer class="bg-[#36211F] text-white/60 text-center py-6 px-4 text-xs">
     <div class="max-w-md mx-auto">
       <p id="footer-wedding-title" class="mb-1 text-white/80 font-serif"></p>
-      <p class="text-[11px]">Made with ❤ by <a href="https://rumahundangan.id" target="_blank" rel="noopener" class="text-accent-gold hover:underline">Rumahundangan.id</a></p>
+      <p class="text-[11px]">Made with ❤ by <a href="hehe" target="_blank" rel="noopener" class="text-accent-gold hover:underline">Rumahundangan.id</a></p>
     </div>
   </footer>
 
@@ -704,14 +740,16 @@
     </div>
   </nav>
 
+  <!-- ======================================================================
+       EXTERNAL JAVASCRIPT LIBRARIES & MODULES
+       ====================================================================== -->
   <!-- AOS Animation Library -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Environment Variable Loaders (Local env.js & Vercel /api/env) -->
-  <script src="js/env.js" onerror="this.remove()"></script>
-  <script src="/api/env" onerror="this.remove()"></script>
+  <!-- Local Environment (gitignored; injects window.__ENV__ for Supabase) -->
+  <script src="/js/env.js"></script>
 
   <!-- Application Modules -->
-  <script type="module" src="js/app.js"></script>
+  <script type="module" src="/js/app.js"></script>
 </body>
 </html>
