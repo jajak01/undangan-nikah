@@ -170,6 +170,7 @@ body.lock-scroll {
 .gold-gradient-text {
   background: linear-gradient(135deg, #D9A05B 0%, #F5D399 50%, #B8833B 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
