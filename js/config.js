@@ -107,38 +107,38 @@ export const WEDDING_CONFIG = {
     gallery: [
       {
         id: 1,
-        url: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80",
-        thumb: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=500&q=80",
+        url: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055914/WhatsApp_Image_2026-08-18_at_7.06.03_PjM_xlqk9u.jpg",
+        thumb: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055914/WhatsApp_Image_2026-08-18_at_7.06.03_PjM_xlqk9u.jpg",
         caption: "Momen Bahagia Habib & Adiba"
       },
       {
         id: 2,
-        url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
-        thumb: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80",
+        url: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055915/WhatsApp_Image_2026-08-18_at_7.06.03_PM_u1hyrp.jpg",
+        thumb: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055915/WhatsApp_Image_2026-08-18_at_7.06.03_PM_u1hyrp.jpg",
         caption: "Janji Suci Dalam Cinta"
       },
       {
         id: 3,
-        url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80",
-        thumb: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80",
+        url: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055916/WhatsApp_Image_2026-08-18_at_7.06.04_PMkkjh_sduoss.jpg",
+        thumb: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055916/WhatsApp_Image_2026-08-18_at_7.06.04_PMkkjh_sduoss.jpg",
         caption: "Menatap Masa Depan Bersama"
       },
       {
         id: 4,
-        url: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80",
-        thumb: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=500&q=80",
+        url: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055916/WhatsApp_Image_2026-08-18_at_7.06.03_lkklPM_nov9xn.jpg",
+        thumb: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055916/WhatsApp_Image_2026-08-18_at_7.06.03_lkklPM_nov9xn.jpg",
         caption: "Langkah Awal Menuju Ridho-Nya"
       },
       {
         id: 5,
-        url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80",
-        thumb: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80",
+        url: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055916/WhatsApp_Image_2026-08-18_at_7.06.04_PkhjkM_ren2fe.jpg",
+        thumb: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055916/WhatsApp_Image_2026-08-18_at_7.06.04_PkhjkM_ren2fe.jpg",
         caption: "Kebahagiaan Dalam Kesederhanaan"
       },
       {
         id: 6,
-        url: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1000&q=80",
-        thumb: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=500&q=80",
+        url: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055917/WhatsApp_Image_2026-08-18_at_7.06.04_PMfg_xbhv3f.jpg",
+        thumb: "https://res.cloudinary.com/daiatjplq/image/upload/v1787055917/WhatsApp_Image_2026-08-18_at_7.06.04_PMfg_xbhv3f.jpg",
         caption: "Abadi Dalam Doa dan Cinta"
       }
     ]
