@@ -746,8 +746,9 @@
   <!-- AOS Animation Library -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Local Environment (gitignored; injects window.__ENV__ for Supabase) -->
-  <script src="/js/env.js"></script>
+  <!-- Environment Variable Loaders: local js/env.js + Vercel /api/env (each silently removed if unavailable) -->
+  <script src="/js/env.js" onerror="this.remove()"></script>
+  <script src="/api/env" onerror="this.remove()"></script>
 
   <!-- Application Modules -->
   <script type="module" src="/js/app.js"></script>
