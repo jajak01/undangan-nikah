@@ -49,7 +49,7 @@ export const WEDDING_CONFIG = {
       time: "08:00 WIB - Selesai",
       venue: "KEDIAMAN MEMPELAI PRIA",
       address: "Sempu 0036/009, Pringombo Rongkop, Gunungkidul",
-      mapsUrl: "https://maps.google.com/?q=Ds+Pagu+Wates+Kediri+Jawa+Timur",
+      mapsUrl: "https://maps.app.goo.gl/kpxCwSS1NaSogin46",
       calendarTitle: "Ijab Fendi & Tamara"
     },
 
@@ -60,7 +60,7 @@ export const WEDDING_CONFIG = {
       time: "10:00 WIB - Selesai",
       venue: "KEDIAMAN MEMPELAI PRIA",
       address: "Sempu 0036/009, Pringombo Rongkop, Gunungkidul",
-      mapsUrl: "https://maps.google.com/?q=Ds+Pagu+Wates+Kediri+Jawa+Timur",
+      mapsUrl: "https://maps.app.goo.gl/kpxCwSS1NaSogin46",
       calendarTitle: "Ijab Fendi & Tamara"
     },
 
