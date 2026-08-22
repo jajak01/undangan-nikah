@@ -10,19 +10,19 @@ export const WEDDING_CONFIG = {
     groom: {
       fullName: "Edita Efendi",
       shortName: "Fendi",
-      father: "Saridi",
-      mother: "Surami",
+      father: "Bapak Saridi",
+      mother: "Ibu Surami",
       childOrder: "Putra",
       instagram: "https://instagram.com/05.082bl",
-      instagramHandle: "@editaefendi",
+      instagramHandle: "@05.082bl",
       // CDN / Placeholder Photo
       photo: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.37.40_AM_r6wacc.jpg"
     },
     bride: {
       fullName: "Tamara Andiliani",
       shortName: "Tamara",
-      father: "Andi Wahyu Lukito",
-      mother: "Sugiyarti",
+      father: "Bapak Andi Wahyu Lukito",
+      mother: "Ibu Sugiyarti",
       childOrder: "Putri",
       instagram: "https://instagram.com/tamaraandil_",
       instagramHandle: "@tamaraandil_",
@@ -81,7 +81,7 @@ export const WEDDING_CONFIG = {
       description: "Pertemuan kami dimulai dari acara Buka Bersama yang dibuat teman-teman pada Ramadhan tahun 2022. Tidak ada yang menyangka, percakapan ringan di dunia maya itu membawa kami bertemu secara langsung tepatnya di Desember 2022. Sejak saat itu, kami tidak pernah berhenti saling mengenal. Dari berteman, menjadi sahabat, dan kini siap berjanji seumur hidup. Kami sangat bahagia bisa berbagi momen istimewa ini bersama Anda."
     },
     {
-      year: "2025",
+      year: "2026",
       title: "Lamaran & Komitmen",
       description: "Setelah melalui perjalanan panjang, saling bertumbuh, dan memantapkan hati, dengan restu kedua keluarga besar kami mengikat janji suci pertunangan untuk melangkah ke jenjang pernikahan."
     },
