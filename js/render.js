@@ -150,8 +150,8 @@ function renderStoryTimeline(stories) {
       <div class="relative flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-12" data-aos="fade-up">
         <div class="w-full md:w-1/2 ${isEven ? 'md:pr-10 md:text-right' : 'md:pl-10 md:text-left'} text-left pl-12 md:pl-0">
           <div class="bg-white p-5 rounded-2xl border border-border-subtle shadow-sm hover:shadow-md transition">
-            <span class="inline-block px-3 py-0.5 rounded-full ${badgeColor} font-serif font-bold text-xs mb-2">${item.year}</span>
-            <h3 class="font-serif font-bold text-base text-primary mb-1">${item.title}</h3>
+            <span class="inline-block px-3 py-0.5 rounded-full ${badgeColor} font-semibold font-bold text-xs mb-2">${item.year}</span>
+            <h3 class="font-semibold font-bold text-base text-primary mb-1">${item.title}</h3>
             <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
               ${item.description}
             </p>

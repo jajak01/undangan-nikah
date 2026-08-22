@@ -229,12 +229,17 @@ function setupCalendarButton() {
     e.preventDefault();
     const event = WEDDING_CONFIG.event;
     const couple = WEDDING_CONFIG.couple;
+
+    // Simpan Tanggal mengikuti acara NGUNDUH MANTU (10:00 WIB s/d 14:00 WIB)
+    const startDate = new Date(event.targetTimestamp);
+    const endDate = new Date(startDate.getTime() + 4 * 60 * 60 * 1000);
+
     const calUrl = Utils.createGoogleCalendarUrl({
-      title: `The Wedding of ${couple.groom.shortName} & ${couple.bride.shortName}`,
-      details: `Pernikahan ${couple.groom.fullName} & ${couple.bride.fullName}.\nAkad: ${event.akad.time}\nResepsi: ${event.resepsi.time}\nLokasi: ${event.akad.venue} - ${event.akad.address}`,
-      location: event.akad.address,
-      startTime: "2026-12-28T08:00:00+07:00",
-      endTime: "2026-12-28T14:00:00+07:00"
+      title: `Ngunduh Mantu ${couple.groom.shortName} & ${couple.bride.shortName}`,
+      details: `NGUNDUH MANTU (Resepsi Pernikahan) ${couple.groom.fullName} & ${couple.bride.fullName}.\nHari/Tanggal: ${event.resepsi.date}\nPukul: ${event.resepsi.time}\nLokasi: ${event.resepsi.venue} - ${event.resepsi.address}\n\nAcara Akad/Ijab Qobul: ${event.akad.date}, ${event.akad.time}`,
+      location: `${event.resepsi.venue} - ${event.resepsi.address}`,
+      startTime: startDate.toISOString(),
+      endTime: endDate.toISOString()
     });
 
     window.open(calUrl, '_blank');

@@ -1,6 +1,6 @@
 /**
  * COUNTDOWN TIMER
- * Live countdown to the wedding day: Senin, 28 Desember 2026
+ * Live countdown to the NGUNDUH MANTU day: Minggu, 20 September 2026 (10:00 WIB)
  */
 
 import { WEDDING_CONFIG } from './config.js';
@@ -27,7 +27,7 @@ export function initCountdown() {
       secondsEl.textContent = '00';
       if (cdContainer) {
         const titleEl = cdContainer.querySelector('.countdown-status');
-        if (titleEl) titleEl.textContent = "Alhamdulillah, Hari Bahagia Telah Tiba!";
+        if (titleEl) titleEl.textContent = "Alhamdulillah, Hari Ngunduh Mantu Telah Tiba!";
       }
       return;
     }

@@ -12,9 +12,9 @@ export const WEDDING_CONFIG = {
       shortName: "Fendi",
       father: "Saridi",
       mother: "Surami",
-      childOrder: "Pxxxxa",
-      instagram: "https://instagram.com/habib",
-      instagramHandle: "@habib",
+      childOrder: "Putra",
+      instagram: "https://instagram.com/05.082bl",
+      instagramHandle: "@editaefendi",
       // CDN / Placeholder Photo
       photo: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.37.40_AM_r6wacc.jpg"
     },
@@ -23,9 +23,9 @@ export const WEDDING_CONFIG = {
       shortName: "Tamara",
       father: "Andi Wahyu Lukito",
       mother: "Sugiyarti",
-      childOrder: "xxx",
-      instagram: "https://instagram.com/adiba",
-      instagramHandle: "@adiba",
+      childOrder: "Putri",
+      instagram: "https://instagram.com/tamaraandil_",
+      instagramHandle: "@tamaraandil_",
       // CDN / Placeholder Photo
       photo: "https://res.cloudinary.com/daiatjplq/image/upload/v1786884848/WhatsApp_Image_2026-08-16_at_11.37.39_AM_klqkf8.jpg"
     },
@@ -35,11 +35,11 @@ export const WEDDING_CONFIG = {
 
   // Event Schedule & Locations
   event: {
-    // Timestamp ISO & target (Senin, 28 Desember 2026 08:00 WIB / UTC+7)
-    targetTimestamp: 1789645200000, // 2026-12-28T08:00:00+07:00
-    dateFormatted: "Kamis, 17 September 2026",
-    day: "Kamis",
-    dateNumber: "17",
+    // Timestamp ISO & target = Acara NGUNDUH MANTU (Minggu, 20 September 2026 10:00 WIB / UTC+7)
+    targetTimestamp: 1789873200000, // 2026-09-20T10:00:00+07:00 (Ngunduh Mantu)
+    dateFormatted: "Minggu, 20 September 2026",
+    day: "Minggu",
+    dateNumber: "20",
     monthYear: "September 2026",
     
     // Akad Nikah
@@ -76,9 +76,9 @@ export const WEDDING_CONFIG = {
   // Love Story Timeline
   story: [
     {
-      year: "2020",
+      year: "2022",
       title: "Awal Cerita",
-      description: "Pertemuan pertama yang tak disengaja di sebuah kegiatan kampus. Dari sekadar tegur sapa sederhana, bersemi percakapan hangat yang membuka jalan bagi kami untuk saling mengenal kepribadian masing-masing lebih dalam."
+      description: "Pertemuan kami dimulai dari acara Buka Bersama yang dibuat teman-teman pada Ramadhan tahun 2022. Tidak ada yang menyangka, percakapan ringan di dunia maya itu membawa kami bertemu secara langsung tepatnya di Desember 2022. Sejak saat itu, kami tidak pernah berhenti saling mengenal. Dari berteman, menjadi sahabat, dan kini siap berjanji seumur hidup. Kami sangat bahagia bisa berbagi momen istimewa ini bersama Anda."
     },
     {
       year: "2025",
@@ -149,13 +149,13 @@ export const WEDDING_CONFIG = {
     bank: {
       bankName: "BCA",
       bankLogo: "BCA",
-      accountNumber: "12345678",
+      accountNumber: "4561488414",
       accountHolder: "Edita Efendi"
     },
     bankBride: {
       bankName: "MANDIRI",
       bankLogo: "MANDIRI",
-      accountNumber: "87654321098",
+      accountNumber: "1370020747719",
       accountHolder: "Edita Efendi"
     },
     physicalGift: {
